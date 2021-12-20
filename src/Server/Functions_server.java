@@ -2,6 +2,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.HashMap;
 
+// class
 public class Functions_server extends UnicastRemoteObject implements Funcs {
 
     // properties
