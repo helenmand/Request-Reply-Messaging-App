@@ -1,7 +1,6 @@
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
-// class
 public class Server {
     public static void main(String[] args) {
         try {

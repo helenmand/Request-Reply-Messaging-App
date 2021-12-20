@@ -1,4 +1,3 @@
-// assistant class
 public class Message {
 
      private boolean isRead;
