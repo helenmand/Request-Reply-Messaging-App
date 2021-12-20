@@ -1,5 +1,6 @@
 import java.rmi.*;
 
+
 public interface Funcs extends Remote {
     // 1
     public int create_account(String username) throws  RemoteException;

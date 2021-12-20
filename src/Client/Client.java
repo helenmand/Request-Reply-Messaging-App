@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 // To change the 2 input parameters (double numbers) in Intellij go to: Edit Configurations -> Client -> Built and Run
 
+
 public class Client {
     public static void main(String[] args) {
         try {
