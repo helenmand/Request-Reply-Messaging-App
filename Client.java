@@ -10,11 +10,16 @@ public class Client {
     public static void main(String[] args) {
         try {
             List<String> arguments = new ArrayList<>();
+            String message_body = "";
             // Default, 0: IP, 1: port number, 2: function id.
             // depends on the FN ID, 3: auth token/ username, 4: recipient/ message id
-            // and final 5: message body.
             if (args.length >= 4) {
                 arguments = Arrays.asList(args);
+                if (args[2] == "3"){
+                    for(int i=5; i < args.length; i++){
+                        message_body += args[i];
+                    }
+                }
             }
             else {
                 System.exit(0); // exit if not all arguments have been given
@@ -35,20 +40,35 @@ public class Client {
                     }
                     break;
                 case "2" :
-                    stub.show_accounts();
+                    ArrayList<String> usernames = new ArrayList<>();
+                    usernames = stub.show_accounts();
+                    
+                    for (String username : usernames){
+                        System.out.println(username);
+                    }
                     break;
                 case "3" :
-                    int state = stub.send_message(Integer.parseInt(arguments.get(3)), arguments.get(4), arguments.get(5));
+                    int state = stub.send_message(Integer.parseInt(arguments.get(3)), arguments.get(4), message_body);
 
                     if (state == 0){
                         System.out.println("OK");
                     }
-                    else{
+                    else if (state == -1){
                         System.out.println("User does not exist");
+                    }
+                    else{
+                        System.out.println("Invalid Auth Token");
                     }
                     break;
                 case "4" :
-                    stub.show_inbox(Integer.parseInt(arguments.get(3)));
+                    ArrayList<Message> inbox = new ArrayList<Message>();
+
+                    inbox = stub.show_inbox(Integer.parseInt(arguments.get(3)));
+                    
+                    for (Message msg : inbox){
+                        msg.show_message(msg);
+                    }
+
                     break;
                 case "5" :
                     stub.read_message(Integer.parseInt(arguments.get(3)), Integer.parseInt(arguments.get(4)));

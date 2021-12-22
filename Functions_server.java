@@ -1,5 +1,6 @@
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 
@@ -8,6 +9,7 @@ public class Functions_server extends UnicastRemoteObject implements Funcs {
     // properties
     private HashMap<Integer, String> users = new HashMap<Integer, String>();
     private HashMap<Integer, Message> messages = new HashMap<Integer,Message>();
+    int message_counter = 0;
     //private ArrayList<Message> messages = new ArrayList<Message>();
 
     // methods
@@ -16,10 +18,10 @@ public class Functions_server extends UnicastRemoteObject implements Funcs {
     }
 
     private static int generate_auth_token(String username){
-        return  username.hashCode() % 10000;
+        return  username.hashCode();
     }
 
-    /**
+    /*
      * Function No. 1
      * Creating accounts, duplicates are not allowed.
      * Every user gets a unique token, by hashing its username.
@@ -37,14 +39,18 @@ public class Functions_server extends UnicastRemoteObject implements Funcs {
         }
     }
 
-    /**
+    /*
      * Function No. 2
-     * Prints every registered system account.
+     * Returns every registered system account.
      */
-    public void show_accounts() throws  RemoteException{
+    public ArrayList<String> show_accounts() throws  RemoteException{
+        ArrayList<String> account_usernames = new ArrayList<>();
+    
         for (Integer token: users.keySet()){
-            System.out.println(users.get(token));
+            account_usernames.add(users.get(token));
         }
+
+        return account_usernames;
     }
 
     // 3
@@ -52,14 +58,25 @@ public class Functions_server extends UnicastRemoteObject implements Funcs {
         if(!users.containsValue(username)){
             return -1;
         }
+        else if (!users.containsKey(auth_token)){
+            return -2;
+        }
         else{
+            Message message = new Message(false, users.get(auth_token), username, message_body, message_counter);
+            messages.put(message_counter++, message);
             return 0;
         }
     }
 
     // 4
-    public void show_inbox(int auth_token) throws  RemoteException{
-
+    public ArrayList<Message> show_inbox(int auth_token) throws  RemoteException{
+        ArrayList<Message> inbox = new ArrayList<Message>();
+        for(Integer msg_id : messages.keySet()){
+            if (messages.get(msg_id).getReceiver() == Integer.toString(auth_token)){
+                inbox.add(messages.get(msg_id));
+            }
+        }
+        return inbox;
     }
 
     // 5

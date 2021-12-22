@@ -34,4 +34,11 @@ public class Message {
     public int getMessage_id(){
         return message_id;
     }
+
+    public String show_message(Message message){
+        String output = Integer.toString(message_id) +  ". from:" + receiver; 
+        if (isRead) { return output; }
+    
+        return output + "*";
+    }
 }
