@@ -66,7 +66,7 @@ public class Client {
                     inbox = stub.show_inbox(Integer.parseInt(arguments.get(3)));
                     
                     for (Message msg : inbox){
-                        msg.show_message(msg);
+                        System.out.println(msg.show_message(msg));
                     }
 
                     break;

@@ -7,6 +7,7 @@ public class Message {
      private String body;
      private int message_id;
 
+    // do u really need msg_id?
     public Message(boolean isRead, String sender, String receiver, String body, int message_id){
         this.isRead = isRead;
         this.sender = sender;
