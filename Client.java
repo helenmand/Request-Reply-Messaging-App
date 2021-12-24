@@ -61,14 +61,11 @@ public class Client {
                     }
                     break;
                 case "4" :
-                    ArrayList<Message> inbox = new ArrayList<Message>();
+                    ArrayList<String> inbox = new ArrayList<>();
 
                     inbox = stub.show_inbox(Integer.parseInt(arguments.get(3)));
                     
-                    for (Message msg : inbox){
-                        System.out.println(msg.show_message(msg));
-                    }
-
+                    for (String msg : inbox){ System.out.println(msg); }
                     break;
                 case "5" :
                     stub.read_message(Integer.parseInt(arguments.get(3)), Integer.parseInt(arguments.get(4)));

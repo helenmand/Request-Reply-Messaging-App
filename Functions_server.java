@@ -69,11 +69,15 @@ public class Functions_server extends UnicastRemoteObject implements Funcs {
     }
 
     // 4
-    public ArrayList<Message> show_inbox(int auth_token) throws  RemoteException{
-        ArrayList<Message> inbox = new ArrayList<Message>();
+    public ArrayList<String> show_inbox(int auth_token) throws  RemoteException{
+        ArrayList<String> inbox = new ArrayList<>();
+       
         for(Integer msg_id : messages.keySet()){
-            if (messages.get(msg_id).getReceiver() == Integer.toString(auth_token)){
-                inbox.add(messages.get(msg_id));
+        
+            if (messages.get(msg_id).getReceiver().equals(users.get(auth_token))){
+                Message m = new Message();
+                m = messages.get(msg_id);
+                inbox.add(m.show_message());
             }
         }
         return inbox;

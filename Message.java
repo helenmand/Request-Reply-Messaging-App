@@ -16,6 +16,14 @@ public class Message {
         this.message_id = message_id;
     }
 
+    public Message(){
+        this.isRead = false;
+        this.sender = "";
+        this.receiver = "";
+        this.body = "";
+        this.message_id = 0;
+    }
+
     public boolean getIsRead() {
         return isRead;
     }
@@ -36,9 +44,9 @@ public class Message {
         return message_id;
     }
 
-    public String show_message(Message message){
-        String output = Integer.toString(message_id) +  ". from:" + receiver; 
-        if (isRead) { return output; }
+    public String show_message(){
+        String output = Integer.toString(this.message_id) +  ". from: " + this.receiver; 
+        if (this.isRead) { return output; }
     
         return output + "*";
     }

@@ -12,7 +12,7 @@ public interface Funcs extends Remote {
     public int send_message(int auth_token, String username, String message_body) throws  RemoteException;
 
     // 4
-    public ArrayList<Message> show_inbox(int auth_token) throws  RemoteException;
+    public ArrayList<String> show_inbox(int auth_token) throws  RemoteException;
 
     // 5
     public void read_message(int auth_token, int message_id) throws  RemoteException;
