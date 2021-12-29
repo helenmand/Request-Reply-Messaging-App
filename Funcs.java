@@ -15,9 +15,13 @@ public interface Funcs extends Remote {
     public ArrayList<String> show_inbox(int auth_token) throws  RemoteException;
 
     // 5
-    public void read_message(int auth_token, int message_id) throws  RemoteException;
+    public String read_message(int auth_token, int message_id) throws  RemoteException;
 
     // 6
-    public void delete_message(int auth_token, int message_id) throws  RemoteException;
+    public String delete_message(int auth_token, int message_id) throws  RemoteException;
+
+    // assistive functions
+    public int check_auth_token(int auth_token) throws RemoteException;
+    public int check_username(String username) throws RemoteException;
 
 }

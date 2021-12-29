@@ -7,7 +7,6 @@ public class Message {
      private String body;
      private int message_id;
 
-    // do u really need msg_id?
     public Message(boolean isRead, String sender, String receiver, String body, int message_id){
         this.isRead = isRead;
         this.sender = sender;
@@ -44,10 +43,19 @@ public class Message {
         return message_id;
     }
 
-    public String show_message(){
+    public void setiIsRead(boolean isRead){
+        this.isRead = isRead;
+    }
+
+    public String show_message_inbox(){
         String output = Integer.toString(this.message_id) +  ". from: " + this.receiver; 
         if (this.isRead) { return output; }
     
         return output + "*";
+    }
+
+    public String show_message_read(){
+        String output = "(" + this.sender + ")" + " " + this.body;
+        return output;
     }
 }
