@@ -48,7 +48,7 @@ public class Message {
     }
 
     public String show_message_inbox(){
-        String output = Integer.toString(this.message_id) +  ". from: " + this.receiver; 
+        String output = Integer.toString(this.message_id) +  ". from: " + this.sender; 
         if (this.isRead) { return output; }
     
         return output + "*";

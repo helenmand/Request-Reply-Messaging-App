@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 // scoobidous technices http://www.yoarra.nl/eng/samenvoegen.php
+// 74727 frmk
 // To change the 2 input parameters (double numbers) in Intellij go to: Edit Configurations -> Client -> Built and Run
 
 
@@ -33,8 +34,8 @@ public class Client {
             // get reference for remote object
             Funcs stub = (Funcs) rmiRegistry.lookup("functions");
 
-            /*if (arguments.get(2) == "2" || arguments.get(2) == "3" 
-             || arguments.get(2) == "4" ||arguments.get(2) == "5" || arguments.get(2) == "6"){
+            if (arguments.get(2).equals("2") || arguments.get(2).equals("3") 
+             || arguments.get(2).equals("4") || arguments.get(2).equals("5") || arguments.get(2).equals("6")){
                 int auth_token_pass = stub.check_auth_token(Integer.parseInt(arguments.get(3)));
                 if (auth_token_pass == 0) {
                     System.out.println("Invalid Auth Token");
@@ -42,20 +43,24 @@ public class Client {
                 }
             }
 
-            if(arguments.get(2) == "3"){
+            if(arguments.get(2).equals("3")){
                 int user_name_pass = stub.check_username(arguments.get(4));
                 if (user_name_pass == 0){
                     System.out.println("User does not exist");
                     System.exit(0);
                 }
-            }*/
+            }
 
             switch (arguments.get(2)) {
                 case "1":
                     int auth_token = stub.create_account(arguments.get(3));
                     if (auth_token == -1) {
                         System.out.println("Sorry, the user already exists.");
-                    } else {
+                    }
+                    else if (auth_token == -2 ){
+                        System.out.println("Invalid username");
+                    } 
+                    else {
                         System.out.println(auth_token);
                     }
                     break;
@@ -68,28 +73,19 @@ public class Client {
                     }
                     break;
                 case "3" :
-                    int state = stub.send_message(Integer.parseInt(arguments.get(3)), arguments.get(4), arguments.get(5));
-
+                    stub.send_message(Integer.parseInt(arguments.get(3)), arguments.get(4), arguments.get(5));
                     System.out.println("OK");
-                
-                    /*if (state == -1){
-                        System.out.println("User does not exist");
-                    }
-                    else{
-                        System.out.println("Invalid Auth Token");
-                    }*/
+                    
                     break;
                 case "4" :
                     ArrayList<String> inbox = new ArrayList<>();
-
                     inbox = stub.show_inbox(Integer.parseInt(arguments.get(3)));
-                    
                     for (String msg : inbox){ System.out.println(msg); }
+                    
                     break;
                 case "5" :
-                    String output = stub.read_message(Integer.parseInt(arguments.get(3)), Integer.parseInt(arguments.get(4)));
-                    
-                    System.out.println(output);
+                    System.out.println(stub.read_message(Integer.parseInt(arguments.get(3)), Integer.parseInt(arguments.get(4))));
+                
                     break;
                 case "6" :
                     String outpt = stub.delete_message(Integer.parseInt(arguments.get(3)), Integer.parseInt(arguments.get(4)));
