@@ -2,22 +2,22 @@ import java.rmi.*;
 import java.util.ArrayList;
 
 public interface Funcs extends Remote {
-    // 1
+    // FN ID 1
     public int create_account(String username) throws  RemoteException;
 
-    // 2
+    // FN ID 2
     public ArrayList<String> show_accounts() throws  RemoteException;
 
-    // 3
+    // FN ID 3
     public void send_message(int auth_token, String username, String message_body) throws  RemoteException;
 
-    // 4
+    // FN ID 4
     public ArrayList<String> show_inbox(int auth_token) throws  RemoteException;
 
-    // 5
+    // FN ID 5
     public String read_message(int auth_token, int message_id) throws  RemoteException;
 
-    // 6
+    // FN ID 6
     public String delete_message(int auth_token, int message_id) throws  RemoteException;
 
     // assistive functions
