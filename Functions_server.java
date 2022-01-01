@@ -17,7 +17,7 @@ public class Functions_server extends UnicastRemoteObject implements Funcs {
     }
 
     /**
-     * Checks if a string is alphanumeric.
+     * Checks if a string is valid format.
      * Only latin characters, numbers and underscores are allowed.
      * Must contain at least one character to be valid.
      * 
@@ -28,6 +28,13 @@ public class Functions_server extends UnicastRemoteObject implements Funcs {
         return s != null && s.matches("^[a-zA-Z0-9_]+$");
     }
 
+    /**
+     * Generates a random number four digit number
+     * between 1000 and 9999. Repeats if the number
+     * belongs to an existing user.
+     * 
+     * @return a unique four digit number, the authentication token.
+     */
     private int generate_unique_auth_token(){
         Random rand = new Random();
         int token = 1000 + rand.nextInt(9000);
@@ -39,25 +46,45 @@ public class Functions_server extends UnicastRemoteObject implements Funcs {
         return token;
     }
 
-    public int check_username(String username){
-        for (Integer auth_token : users.keySet()){
-            if (users.get(auth_token).getUsername().equals(username)){ return -1; }
-        }
-        return 0;
-    }
-
-    public int check_auth_token(int auth_token){
-        if (users.containsKey(auth_token)){ return -1; }
-        return 0;
-    }
-
-    public int find_message(int message_id, ArrayList<Message> inbox){
+    /**
+     * Finds a message with a specific id in an inbox
+     * 
+     * @param message_id the id of the message
+     * @param inbox to be searched
+     * @return -1 if the message does not exist, 
+     *         the index of the message in the arrat if it does
+     */
+    private int find_message(int message_id, ArrayList<Message> inbox){
         int index = -1;
         
         for (Message msg : inbox){
             if(msg.getMessage_id() == message_id){ index = inbox.indexOf(msg); }
         }
         return index;
+    }
+
+    /**
+     * Checks if the given username exists already
+     * 
+     * @param username given username
+     * @return -1 if the username exists, 0 if it does not
+     */
+    public int check_username(String username) throws RemoteException{
+        for (Integer auth_token : users.keySet()){
+            if (users.get(auth_token).getUsername().equals(username)){ return -1; }
+        }
+        return 0;
+    }
+
+    /**
+     * Checks if the given auth token exists already
+     * 
+     * @param auth_token given auth token
+     *  @return -1 if the auth token exists, 0 if it does not
+     */
+    public int check_auth_token(int auth_token) throws RemoteException{
+        if (users.containsKey(auth_token)){ return -1; }
+        return 0;
     }
 
     /**
@@ -159,8 +186,8 @@ public class Functions_server extends UnicastRemoteObject implements Funcs {
      * If the message does not exist in his inbox it returns 
      * a "Message ID does not exist" message, otherwise it
      * returns the message in the following format:
-     *              '(sender)message_body' 
-     * 
+     *              '(sender)message_body'
+     *  
      * @param auth_token user's auth token
      * @param message_id of the message to be read
      * @return the string to print for the user
@@ -192,9 +219,13 @@ public class Functions_server extends UnicastRemoteObject implements Funcs {
     /**
      * Function ID No. 6
      * 
-     * @param auth_token
-     * @param message_id
-     * @return 
+     * Deletes a message from a users inbox, only 
+     * if the message exists in his inbox.
+     * 
+     * @param auth_token user's auth token
+     * @param message_id the message id of the message the user wants to delete
+     * @return 'OK', if the message deleted successfuly, 
+     *          "Message does not exist", if the message does not exist
      */
     public String delete_message(int auth_token, int message_id) throws RemoteException{
         ArrayList<Message> user_inbox = new ArrayList<Message>();

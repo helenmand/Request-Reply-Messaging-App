@@ -7,6 +7,7 @@ public class Message {
      private String body;
      private int message_id;
 
+    // constructors
     public Message(boolean isRead, String sender, String receiver, String body, int message_id){
         this.isRead = isRead;
         this.sender = sender;
@@ -23,10 +24,7 @@ public class Message {
         this.message_id = 0;
     }
 
-    public boolean getIsRead() {
-        return isRead;
-    }
-
+    // getters
     public String getSender(){
         return sender;
     }
@@ -43,10 +41,23 @@ public class Message {
         return message_id;
     }
 
+    public boolean getIsRead() {
+        return isRead;
+    }
+
+    // setters
     public void setiIsRead(boolean isRead){
         this.isRead = isRead;
     }
 
+    /**
+     * Creates a string containing information of the message
+     * in the following formnat:
+     *          'message_id. from: sender',
+     * if the string is not read then a '*' is added.
+     * 
+     * @return the string
+     */
     public String show_message_inbox(){
         String output = Integer.toString(this.message_id) +  ". from: " + this.sender; 
         if (this.isRead) { return output; }
@@ -54,6 +65,13 @@ public class Message {
         return output + "*";
     }
 
+    /**
+     * Creates a string containing information of the message
+     * in the following formnat:
+     *          '(sender)message_body'
+     * 
+     * @return the string
+     */
     public String show_message_read(){
         String output = "(" + this.sender + ")" + " " + this.body;
         return output;

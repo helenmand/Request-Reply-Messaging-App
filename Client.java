@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 
 // scoobidous technices http://www.yoarra.nl/eng/samenvoegen.php
-// 74727 frmk
 // To change the 2 input parameters (double numbers) in Intellij go to: Edit Configurations -> Client -> Built and Run
 
 
