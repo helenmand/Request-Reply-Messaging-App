@@ -1,3 +1,4 @@
+package src.Server;
 import java.util.ArrayList;
 
 public class Account{
@@ -50,6 +51,11 @@ public class Account{
         this.messageBox = messageBox;
     }
 
+    /**
+     * adds a message in the user's inbox.
+     * 
+     * @param message the message
+     */
     public void addInboxMessage(Message message){
         this.messageBox.add(message);
     }

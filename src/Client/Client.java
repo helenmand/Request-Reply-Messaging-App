@@ -1,8 +1,11 @@
+package src.Client;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import src.Common.Funcs;
 
 // To change the 2 input parameters (double numbers) in Intellij go to: Edit Configurations -> Client -> Built and Run
 
@@ -61,6 +64,9 @@ public class Client {
                     }
                     else if (auth_token == -2 ){
                         System.out.println("Invalid username");
+                    }
+                    else if (auth_token == -3){
+                        System.out.println("Sorry, unable to create new accounts.");
                     } 
                     else {
                         System.out.println(auth_token);

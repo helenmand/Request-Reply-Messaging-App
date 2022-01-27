@@ -1,13 +1,16 @@
+package src.Server;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
+import src.Common.Funcs;
+
 
 public class Functions_server extends UnicastRemoteObject implements Funcs {
 
-    // properties
+    // attributes
     int message_counter = 0;
     private HashMap<Integer, Account> users = new HashMap<Integer, Account>();
 
@@ -101,6 +104,9 @@ public class Functions_server extends UnicastRemoteObject implements Funcs {
     public int create_account(String username) throws  RemoteException{
         if (!is_valid_username(username)){
             return -2;
+        }
+        else if(users.size() == 9000){
+            return -3;
         }
         else if(check_username(username) == 0){
             int auth_token = generate_unique_auth_token();

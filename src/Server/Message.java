@@ -1,3 +1,4 @@
+package src.Server;
 
 public class Message {
 
