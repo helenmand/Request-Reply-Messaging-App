@@ -88,7 +88,6 @@ When running the client the arguments vary, depending on the function you are pe
 
 Once all these arguments have passed the check and depending on the function ID, the client requests from the server the propper function. The response is returned and printed on the client's side.
 
-<p align="right">(<a href="#top">^</a>)</p>
 <div id="funcs"></div>
 <h2> <u> Funcs </u> </h2>
 
@@ -114,7 +113,6 @@ If the username is valid and available it returns the auth token that refers to 
 <p> Simply returns an array containing every user's username. These usernames are printed in the Client.
 </p>
 
-<p align="right">(<a href="#top">^</a>)</p>
 
 <div id="send-message"></div>
 <h3 align="center"><b> Send Message </b></h3><p> 
@@ -155,7 +153,6 @@ If a user tries to read a message that does not exist or exists in another user'
 <h3 align="center"><b> Delete Message </b></h3><p>
 
 Allows the user to remove a message from their inbox, by providing the message's id. A user is not allowed to remove messages from another user's inbox. If the message is successfuly deleted it returns the string *OK*. If the message is not in their inbox, then it returns *Message does not exist*. The returned string is printed in the Client. </p>
-<p align="right">(<a href="#top">^</a>)</p>
 
 Apart from the above six user functions there are also some assistive functions. These are:
 
@@ -183,7 +180,6 @@ Apart from the above six user functions there are also some assistive functions.
 ```
   public int check_auth_token(int auth_token) 
 ```
-<p align="right">(<a href="#top">^</a>)</p>
 
 <div id="account"></div>
 <h2> <u> Account </u> </h2> <p>
