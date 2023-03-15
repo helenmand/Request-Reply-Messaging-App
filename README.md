@@ -72,17 +72,17 @@ The *Client.java* is the client file.
 When running the client the arguments vary, depending on the function you are performing.
 
 ---
->*Function ID* 1 (*create account*) : \<**ip**> \<**port number**> 1 \<**username**>
+**Function ID** 1 (*create account*) : \<**ip**> \<**port number**> 1 \<**username**>
 
->*Function ID* 2 (*show accounts*) : \<**ip**> \<**port number**> 2 \<**auth token**>
+**Function ID** 2 (*show accounts*) : \<**ip**> \<**port number**> 2 \<**auth token**>
 
->*Function ID* 3 (*send message*) : \<**ip**> \<**port number**> 3 \<**auth token**> \<**recipient**> \<**messsage body**>
+**Function ID** 3 (*send message*) : \<**ip**> \<**port number**> 3 \<**auth token**> \<**recipient**> \<**messsage body**>
 
->*Function ID* 4 (*show inbox*) : \<**ip**> \<**port number**> 4 \<**auth token**>
+**Function ID** 4 (*show inbox*) : \<**ip**> \<**port number**> 4 \<**auth token**>
 
->*Function ID* 5 (*read message*) : \<**ip**> \<**port number**> 5 \<**auth token**> \<**message id**>
+**Function ID** 5 (*read message*) : \<**ip**> \<**port number**> 5 \<**auth token**> \<**message id**>
 
->*Function ID* 6 (*delete message*) : \<**ip**> \<**port number**> 6 \<**auth token**> \<**message id**>
+**Function ID** 6 (*delete message*) : \<**ip**> \<**port number**> 6 \<**auth token**> \<**message id**>
 ---
 Αrguments are considered invalid only if their number is less than four. The trust is placed on the user which is the reason why the arguments' order is not examined any further. Necessary checks are performed only on the auth token, and on the username (FN ID 3), **provided** that they are in the right place. There is one more check for the function ID, given that it is in the correct position, to have a value between 1 and 6.
 
@@ -132,10 +132,10 @@ Prints the user's inbox. A user is authorised to view only **their** inbox.
 
 The function returns an arraylist of strings, of every message in a specific user's inbox. The messages are in the following format: 
 
-><font size="3"><p align="center"><b><i>message_id</i>. from: <i>sender</i></b></p></font>
+<font size="3"><p align="center"><b><i>message_id</i>. from: <i>sender</i></b></p></font>
 
 followed by '*' in case the message is not read yet.
-><font size="3"><p align="center"><b><i>message_id</i>. from: <i>sender</i>*</b></p></font>
+<font size="3"><p align="center"><b><i>message_id</i>. from: <i>sender</i>*</b></p></font>
 
 In case of an empty inbox, it returns an empty arraylist.
 </p>
@@ -145,7 +145,7 @@ In case of an empty inbox, it returns an empty arraylist.
 
 With the read message function you can mark a message as read. Basically it allows a user to change the *isRead* value of a specific message from false to true. Although if a message is already read, the user can "re-read" it and there will be no change. Returns a string of the message, in the following format:
 
-><font size="3"><p align="center"> <b>(<i>sender</i>)<i>message body</i></b></p></font>
+<font size="3"><p align="center"> <b>(<i>sender</i>)<i>message body</i></b></p></font>
 
 If a user tries to read a message that does not exist or exists in another user's inbox then it returns *Message ID does not exist*</p>
 
@@ -199,20 +199,19 @@ The function,
 public String show_message_inbox()
 ```
 returns this template which is used when a user wants to see his inbox
-> <font size="3"> message_id. from user </font>
+<br><font size="3"> message_id. from user </font>
 
 and the function,
 ```
 public String show_message_read()
 ```
 is used when a user wants to read a message in his inbox.
-> <font size="3"> (sender)message_body </font>
+<br><font size="3"> (sender)message_body </font>
 
 <br><hr></br>
 
 <div id="contact"></div>
 <h2> Contact </h2>
-
 Eleni Mandana - emandana@csd.auth.gr 
 
 <p align="right">(<a href="#top">^</a>)</p>
