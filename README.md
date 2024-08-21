@@ -212,6 +212,6 @@ is used when a user wants to read a message in his inbox.
 
 <div id="contact"></div>
 <h2> Contact </h2>
-Eleni Mandana - emandana@csd.auth.gr 
+Eleni M. 
 
 <p align="right">(<a href="#top">^</a>)</p>
