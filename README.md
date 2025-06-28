@@ -5,7 +5,6 @@
 <br />
 <div align="center">
   <h2 align="center">Communication Networks</h2>
-  <p align="center"> Mandana Eleni</p>
   <p align="center"> fifth semester 2021/2022 </p>
 </div>
 
